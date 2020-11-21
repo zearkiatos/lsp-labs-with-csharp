@@ -1,4 +1,4 @@
-namespace lsp_labs_with_csharp.src.models
+namespace LiskovSegregationPrincipleExample.src.models
 {
     public class Rectangle
     {

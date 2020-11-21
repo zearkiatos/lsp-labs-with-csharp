@@ -1,5 +1,5 @@
-using lsp_labs_with_csharp.src.models;
-namespace lsp_labs_with_csharp.src.models
+using LiskovSegregationPrincipleExample.src.models;
+namespace LiskovSegregationPrincipleExample.src.models
 {
     public class Square : Rectangle
     {
