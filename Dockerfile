@@ -10,4 +10,4 @@ COPY . /app
 CMD dotnet restore && \
     dotnet clean && \
     dotnet build && \
-    dotnet run
+    dotnet test
