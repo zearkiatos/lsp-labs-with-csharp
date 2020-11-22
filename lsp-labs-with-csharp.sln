@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiskovSegregationPrincipleExample", "LiskovSegregationPrincipleExample\LiskovSegregationPrincipleExample.csproj", "{2B94D77A-A56E-4351-9B8A-0FF46A52898B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiskovSubstitutionPrincipleExample", "LiskovSubstitutionPrincipleExample\LiskovSubstitutionPrincipleExample.csproj", "{2B94D77A-A56E-4351-9B8A-0FF46A52898B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiskovSegregationPrincipleExample.Tests", "LiskovSegregationPrincipleExample.Tests\LiskovSegregationPrincipleExample.Tests.csproj", "{D242DA04-9533-45A8-9ECA-354F77A4F990}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiskovSubstitutionPrincipleExample.Tests", "LiskovSubstitutionPrincipleExample.Tests\LiskovSubstitutionPrincipleExample.Tests.csproj", "{D242DA04-9533-45A8-9ECA-354F77A4F990}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

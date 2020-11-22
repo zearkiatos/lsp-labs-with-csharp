@@ -1,5 +1,5 @@
-using LiskovSegregationPrincipleExample.src.models;
-namespace LiskovSegregationPrincipleExample.src.models
+using LiskovSubstitutionPrincipleExample.src.models;
+namespace LiskovSubstitutionPrincipleExample.src.models
 {
     public class Square : Rectangle
     {

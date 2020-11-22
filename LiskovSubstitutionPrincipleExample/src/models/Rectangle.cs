@@ -1,4 +1,4 @@
-namespace LiskovSegregationPrincipleExample.src.models
+namespace LiskovSubstitutionPrincipleExample.src.models
 {
     public class Rectangle
     {
