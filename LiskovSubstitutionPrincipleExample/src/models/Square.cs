@@ -1,4 +1,4 @@
-using LiskovSubstitutionPrincipleExample.src.models;
+
 namespace LiskovSubstitutionPrincipleExample.src.models
 {
     public class Square : Rectangle
