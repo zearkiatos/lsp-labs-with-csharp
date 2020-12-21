@@ -1,11 +1,11 @@
-using Newtonsoft;
+using Newtonsoft.JsonResult;
 namespace LiskovSubstitutionPrincipleExample.src.Bid.Application.Notification
 {
         public class TwitterNotification : Notification 
         {
-            JsonResult Send(string message) {
-                
-                return Json();
+            public JsonResult Send(string message) 
+            {
+                return null;
             }
         }
 }

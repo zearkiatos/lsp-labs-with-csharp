@@ -1,19 +1,45 @@
-namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure.Notifier
+using LiskovSubstitutionPrincipleExample.src.Bid.Domain;
+namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
 {
     public class TwitterNotifier : Notifier
     {
 
         TwitterNotifier(string message, string consumerKey, string consumerSecret, string accessToken, string tokenSecret) 
         {
-            Message = message;
-            ConsumerKey = consumerKey;
+            _message = message;
+            _consumerKey = consumerKey;
+            _consumerSecret = consumerSecret;
+            _accessToken = accessToken;
+            _tokenSecret = tokenSecret;
         }
-        public string ConsumerKey { get; set; }
 
-        public string ConsumerSecret { get; set; }
+        private string _consumerKey;
+        public string ConsumerKey
+        {
+            get { return _consumerKey; }
+            set { _consumerKey = value; }
+        }
 
-        public string AccessToken { get; set; }
+        private string _consumerSecret;
+        public string ConsumerSecret
+        {
+            get { return _consumerSecret; }
+            set { _consumerSecret = value; }
+        }
 
-        public string TokenSecret { get; set; }
+        private string _accessToken;
+        public string AccessToken
+        {
+            get { return _accessToken; }
+            set { _accessToken = value; }
+        }
+
+        private string _tokenSecret;
+        public string TokenSecret
+        {
+            get { return _tokenSecret; }
+            set { _tokenSecret = value; }
+        }
+        
     }
 }

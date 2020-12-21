@@ -1,7 +1,7 @@
-using Newtonsoft;
+using Newtonsoft.JsonResult;
 namespace LiskovSubstitutionPrincipleExample.src.Bid.Application.Notification
 {
-    public interface Notification
+    interface Notification
     {
         JsonResult Send(string message);
     }
