@@ -1,8 +1,8 @@
 using Newtonsoft.JsonResult;
 using LiskovSubstitutionPrincipleExample.src.Bid.Domain;
-namespace LiskovSubstitutionPrincipleExample.src.Bid.Application.Notification
+namespace LiskovSubstitutionPrincipleExample.Tests.src.Bid.Application.Notification
 {
-        public class TwitterNotification : Notification 
+        public class TwitterNotification_SuiteTests
         {
             public JsonResult Send(Notifier notifier) 
             {
