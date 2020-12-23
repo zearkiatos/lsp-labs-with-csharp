@@ -4,7 +4,7 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
     public class TwitterNotifier : Notifier
     {
 
-        TwitterNotifier(string message, string consumerKey, string consumerSecret, string accessToken, string tokenSecret) 
+        public TwitterNotifier(string message, string consumerKey, string consumerSecret, string accessToken, string tokenSecret) 
         {
             _message = message;
             _consumerKey = consumerKey;
