@@ -23,7 +23,12 @@ namespace LiskovSubstitutionPrincipleExample.Tests.src.Bid.Application.Notificat
                 #endregion
 
                 #region Execute test
-                JsonResult notificationResponseMessage = 
+                TwitterNotification sendNotification = new TwitterNotification();
+                JsonResult notificationResponseMessage = sendNotification.Send(tweet);
+                #endregion
+
+                #region Check test
+                Assert.Equal(expectedValue,notificationResponseMessage.Data);
                 #endregion
             }
         }
