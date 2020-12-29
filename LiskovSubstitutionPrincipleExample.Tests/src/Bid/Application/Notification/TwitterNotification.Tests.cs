@@ -9,7 +9,7 @@ namespace LiskovSubstitutionPrincipleExample.Tests.src.Bid.Application.Notificat
         public class TwitterNotification_SuiteTests
         {
             [Fact]
-            public Should_Send_Notification_To_Twitter() 
+            public void Should_Send_Notification_To_Twitter() 
             {
                 #region Prepare test
                 string expectedValue = "Hello World";
