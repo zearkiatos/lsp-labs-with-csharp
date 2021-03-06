@@ -17,9 +17,6 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Domain
             get { return _path; }
             set { _path = value; }
         }
-        
-        
-        
     }
 
 }

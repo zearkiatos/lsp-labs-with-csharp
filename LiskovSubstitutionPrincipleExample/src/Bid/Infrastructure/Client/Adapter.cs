@@ -1,9 +1,10 @@
-using Newtonsoft.JsonResult;
+using System.Threading.Tasks;
 using LiskovSubstitutionPrincipleExample.src.Bid.Domain;
+
 namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure.Client
 {
     interface Adapter
     {
-        JsonResult Send(BaseClient client);
+        Task<string> Send(Notifier notifier);
     }
 }
