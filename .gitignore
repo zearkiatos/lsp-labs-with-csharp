@@ -3,3 +3,4 @@ bin
 obj
 .env
 .vscode
+.vs

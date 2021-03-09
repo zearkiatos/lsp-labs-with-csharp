@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using Newtonsoft.JsonResult;
+using Newtonsoft.Json;
 using LiskovSubstitutionPrincipleExample.src.Bid.Domain;
 using LiskovSubstitutionPrincipleExample.src.Bid.Application.Notification;
 using LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure;
@@ -26,10 +27,10 @@ namespace LiskovSubstitutionPrincipleExample.Tests.src.Bid.Application.Notificat
                 #region Execute test
                 TwitterNotification sendNotification = new TwitterNotification();
                 JsonResult notificationResponseMessage = sendNotification.Send(tweet);
+                var result = (Tweet)notificationResponseMessage.Data;
                 #endregion
-                Console.WriteLine(notificationResponseMessage.Data.ToString());
                 #region Check test
-                // Assert.Equal(expectedValue,notificationResponseMessage);
+                Assert.Equal(expectedValue,result.Text);
                 #endregion
             }
         }
