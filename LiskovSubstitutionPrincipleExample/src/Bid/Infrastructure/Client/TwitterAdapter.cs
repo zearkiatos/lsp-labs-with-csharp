@@ -20,15 +20,16 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure.Client
         {
             _client = client;
         }
-        async public Task<string> Send(TwitterNotifier notifier)
+        async public Task<string> Send(Notifier notifier)
         {
             string jsonStr  = "";
             try
             {
+                var notification = (TwitterNotifier)notifier;
                 string jsonPost = JsonConvert.SerializeObject("");
                 var objectContent = new StringContent(jsonPost, Encoding.UTF8, "application/json");
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                httpClient.DefaultRequestHeaders.Add("Authorization", $"OAuth oauth_consumer_key={notifier.ConsumerKey},oauth_token={notifier.AccessToken},oauth_signature_method='HMAC-SHA1',oauth_version='1.0'");
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"OAuth oauth_consumer_key={notification.ConsumerKey},oauth_token={notification.AccessToken},oauth_signature_method='HMAC-SHA1',oauth_version='1.0'");
                 HttpResponseMessage response = await httpClient.PostAsync($"{_client.BaseUrl}/{_client.Path}?status={notifier.Message}",objectContent);
                 if (response.IsSuccessStatusCode)
                 {
