@@ -31,8 +31,8 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure.Client
                 string jsonPost = JsonConvert.SerializeObject(new { status = "Hello World" });
                 var objectContent = new StringContent(jsonPost, Encoding.UTF8, "application/json");
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                httpClient.DefaultRequestHeaders.Add("Authorization", $"OAuth oauth_consumer_key={notification.ConsumerKey},oauth_token={notification.AccessToken},oauth_signature_method='HMAC-SHA1',oauth_version='1.0'");
-                HttpResponseMessage response = await httpClient.PostAsync($"{_client.BaseUrl}/{_client.Path}", new FormUrlEncodedContent(textData));
+                httpClient.DefaultRequestHeaders.Add("authorization", $"OAuth oauth_consumer_key={notification.ConsumerKey},oauth_token={notification.AccessToken},oauth_signature_method='HMAC-SHA1',oauth_timestamp={notification.Timestamp},oauth_nonce={notification.Nonce},oauth_version='1.0'");
+                HttpResponseMessage response = await httpClient.PostAsync($"{_client.BaseUrl}/{_client.Path}?include_entities=true", new FormUrlEncodedContent(textData));
                 if (response.IsSuccessStatusCode)
                 {
                     jsonStr = await response.Content.ReadAsStringAsync();

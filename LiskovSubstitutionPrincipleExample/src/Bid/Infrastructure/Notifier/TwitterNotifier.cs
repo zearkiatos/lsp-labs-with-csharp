@@ -1,3 +1,6 @@
+using System;
+using System.Security.Cryptography;
+using System.Text;
 using LiskovSubstitutionPrincipleExample.src.Bid.Domain;
 namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
 {
@@ -11,6 +14,11 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
             _consumerSecret = consumerSecret;
             _accessToken = accessToken;
             _tokenSecret = tokenSecret;
+            _hmacsha1 = new HMACSHA1(new ASCIIEncoding().GetBytes($"{_consumerKey}&{_accessToken}"));
+            _nonce = Guid.NewGuid().ToString();
+            DateTime epochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var timestamp = (int)((DateTime.UtcNow - epochUtc).TotalSeconds);
+            _timestamp = timestamp;
         }
 
         private string _consumerKey;
@@ -40,6 +48,37 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
             get { return _tokenSecret; }
             set { _tokenSecret = value; }
         }
-        
+
+        private HMACSHA1 _hmacsha1;
+
+        public HMACSHA1 Hmacsha1
+        {
+            get { return _hmacsha1; }
+            private set { _hmacsha1 = new HMACSHA1(new ASCIIEncoding().GetBytes($"{_consumerKey}&{_accessToken}")); }
+        }
+
+        private int _timestamp;
+
+        public int Timestamp
+        {
+            get { return _timestamp; }
+            private set {
+                DateTime epochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                var timestamp = (int)((DateTime.UtcNow - epochUtc).TotalSeconds);
+                _timestamp = timestamp;
+            }
+        }
+
+        private string _nonce;
+
+        public string Nonce
+        {
+            get { return _nonce; }
+            private set
+            {
+                _nonce = Guid.NewGuid().ToString();
+            }
+        }
+
     }
 }
