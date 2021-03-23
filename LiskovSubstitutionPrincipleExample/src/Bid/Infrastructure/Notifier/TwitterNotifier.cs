@@ -16,9 +16,11 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
             _tokenSecret = tokenSecret;
             _hmacsha1 = new HMACSHA1(new ASCIIEncoding().GetBytes($"{_consumerKey}&{_accessToken}"));
             _nonce = Guid.NewGuid().ToString();
+            string signingKey = string.Format($"{Uri.EscapeDataString(_consumerSecret)},${Uri.EscapeDataString(_tokenSecret)}");
             DateTime epochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             var timestamp = (int)((DateTime.UtcNow - epochUtc).TotalSeconds);
             _timestamp = timestamp;
+            _signature = signingKey;
         }
 
         private string _consumerKey;
@@ -79,6 +81,17 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
                 _nonce = Guid.NewGuid().ToString();
             }
         }
+        
+        private string _signature;
+        public string Signature
+        {
+            get { return _signature; }
+            private set {
+                string signingKey = string.Format($"{Uri.EscapeDataString(_consumerSecret)},${Uri.EscapeDataString(_tokenSecret)}");
+                _signature = signingKey; 
+            }
+        }
+        
 
     }
 }

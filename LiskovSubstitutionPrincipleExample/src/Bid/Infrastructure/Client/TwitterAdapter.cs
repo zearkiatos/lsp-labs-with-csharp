@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Newtonsoft.JsonResult;
+using System.Net;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Collections.Generic;
@@ -27,12 +28,12 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure.Client
             {
                 var notification = (TwitterNotifier)notifier;
                 var textData = new Dictionary<string, string> {
-                { "status", notification.Message } };
+                { "status", Uri.EscapeDataString(notification.Message) } };
                 string jsonPost = JsonConvert.SerializeObject(new { status = "Hello World" });
-                var objectContent = new StringContent(jsonPost, Encoding.UTF8, "application/json");
+                var objectContent = new StringContent(jsonPost, Encoding.UTF8, "application/x-www-form-urlencoded");
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                httpClient.DefaultRequestHeaders.Add("authorization", $"OAuth oauth_consumer_key={notification.ConsumerKey},oauth_token={notification.AccessToken},oauth_signature_method='HMAC-SHA1',oauth_timestamp={notification.Timestamp},oauth_nonce={notification.Nonce},oauth_version='1.0'");
-                HttpResponseMessage response = await httpClient.PostAsync($"{_client.BaseUrl}/{_client.Path}?include_entities=true", new FormUrlEncodedContent(textData));
+                httpClient.DefaultRequestHeaders.Add("authorization", $"OAuth oauth_consumer_key='{Uri.EscapeDataString(notification.ConsumerKey)}',oauth_token='{Uri.EscapeDataString(notification.AccessToken)}',oauth_signature_method='HMAC-SHA1',oauth_timestamp='{Uri.EscapeDataString(notification.Timestamp.ToString())}',oauth_nonce='{Uri.EscapeDataString(notification.Nonce)}',oauth_version='1.0'");
+                HttpResponseMessage response = await httpClient.PostAsync($"{_client.BaseUrl}/{_client.Path}",new FormUrlEncodedContent(textData));
                 if (response.IsSuccessStatusCode)
                 {
                     jsonStr = await response.Content.ReadAsStringAsync();
