@@ -14,9 +14,9 @@ namespace LiskovSubstitutionPrincipleExample.Tests.src.Bid.Application.Notificat
             public void Should_Send_Notification_To_Twitter() 
             {
                 #region Prepare test
-                string expectedValue = "Hello World";
+                string expectedValue = "Hola Mundo!";
                 TwitterNotifier  tweet = new TwitterNotifier(
-                    "Hello World",
+                    "Hola Mundo!",
                     "eLtPJr6q05xdxFkm5bfRH1T0O",
                     "XfdqGUd7a7w5286ECumfSjdJrr0NxMPKQjnPuvhPMCAMQMCtEi", 
                     "223567944-KbEESnkippAyYhmDNOg05e5gPH91Owx49ZKqlCtD",

@@ -23,17 +23,34 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure.Client
         }
         async public Task<string> Send(Notifier notifier)
         {
-            string jsonStr  = "";
+            string jsonStr = "";
             try
             {
+
+               //HttpClient client = new HttpClient();
+               //client.BaseAddress = new Uri(Constants.Server);
+               //client.DefaultRequestHeaders.Add("Accept", "application/json");
+               //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+               //
+               //
+               ////ResultDocumento result = new ResultDocumento();
+               //
+               //
+               //string jsonPost = JsonConvert.SerializeObject(transaccion);
+               //
+               //var objectContent = new StringContent(jsonPost, Encoding.UTF8, "application/json");
+               //
+               //HttpResponseMessage response = new HttpResponseMessage();
+               //
+               //response = await client.PostAsync(Constants.Endpoint + "/Transacciones", objectContent);
                 var notification = (TwitterNotifier)notifier;
-                var textData = new Dictionary<string, string> {
-                { "status", Uri.EscapeDataString(notification.Message) } };
-                string jsonPost = JsonConvert.SerializeObject(new { status = "Hello World" });
-                var objectContent = new StringContent(jsonPost, Encoding.UTF8, "application/x-www-form-urlencoded");
+                var textData = new Dictionary<string, string> { };
+                string jsonPost = JsonConvert.SerializeObject(new { });
+                var objectContent = new StringContent(jsonPost, Encoding.UTF8, "application/json");
+                httpClient.BaseAddress = new Uri($"{ _client.BaseUrl}"); ;
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                httpClient.DefaultRequestHeaders.Add("authorization", $"OAuth oauth_consumer_key='{Uri.EscapeDataString(notification.ConsumerKey)}',oauth_token='{Uri.EscapeDataString(notification.AccessToken)}',oauth_signature_method='HMAC-SHA1',oauth_timestamp='{Uri.EscapeDataString(notification.Timestamp.ToString())}',oauth_nonce='{Uri.EscapeDataString(notification.Nonce)}',oauth_version='1.0'");
-                HttpResponseMessage response = await httpClient.PostAsync($"{_client.BaseUrl}/{_client.Path}",new FormUrlEncodedContent(textData));
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"OAuth oauth_consumer_key='{Uri.EscapeDataString(notification.ConsumerKey)}',oauth_token='{Uri.EscapeDataString(notification.AccessToken)}',oauth_signature_method='HMAC-SHA1',oauth_timestamp='{Uri.EscapeDataString(notification.Timestamp.ToString())}',oauth_nonce='{Uri.EscapeDataString(notification.Nonce)}',oauth_version='1.0'");
+                HttpResponseMessage response = await httpClient.PostAsync($"{_client.Path}?status='Hello%20world'", objectContent);
                 if (response.IsSuccessStatusCode)
                 {
                     jsonStr = await response.Content.ReadAsStringAsync();

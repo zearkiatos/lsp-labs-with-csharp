@@ -7,7 +7,7 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
     public class TwitterNotifier : Notifier
     {
 
-        public TwitterNotifier(string message, string consumerKey, string consumerSecret, string accessToken, string tokenSecret) 
+        public TwitterNotifier(string message, string consumerKey, string consumerSecret, string accessToken, string tokenSecret)
         {
             _message = message;
             _consumerKey = consumerKey;
@@ -64,7 +64,8 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
         public int Timestamp
         {
             get { return _timestamp; }
-            private set {
+            private set
+            {
                 DateTime epochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                 var timestamp = (int)((DateTime.UtcNow - epochUtc).TotalSeconds);
                 _timestamp = timestamp;
@@ -81,17 +82,18 @@ namespace LiskovSubstitutionPrincipleExample.src.Bid.Infrastructure
                 _nonce = Guid.NewGuid().ToString();
             }
         }
-        
+
         private string _signature;
         public string Signature
         {
             get { return _signature; }
-            private set {
+            private set
+            {
                 string signingKey = string.Format($"{Uri.EscapeDataString(_consumerSecret)},${Uri.EscapeDataString(_tokenSecret)}");
-                _signature = signingKey; 
+                _signature = signingKey;
             }
         }
-        
+
 
     }
 }
